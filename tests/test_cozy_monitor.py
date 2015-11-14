@@ -1,4 +1,7 @@
 #!/usr/bin/python
+'''
+The cozy_monitor module tests
+'''
 
 import os
 import mock
@@ -10,18 +13,25 @@ CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
 
 
 class PopenMock(object):
+    '''
+    An class to Mock subprocess.Popen()
+    '''
     def __init__(self, command):
+        '''
+        Mock open a file with output of cozy-monitor launch
+        & put them in stdout
+        '''
         file_path = '{}/cozy-monitor-outputs/cozy-monitor-{}.txt'
         self.stdout = open(file_path.format(CURRENT_PATH, command))
 
 
-class CozyMonitor(unittest.TestCase):
+class TestCozyMonitor(unittest.TestCase):
     '''
     The cozy_monitor test case.
     '''
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanGetStatus(self, mock_subprocess):
+    def test_can_get_status(self, mock_subprocess):
         '''
         Cozy monitor status can parsed
         '''
@@ -60,7 +70,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(app_stopped, 'stopped')
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanStartAnApp(self, mock_subprocess):
+    def test_can_start_an_app(self, mock_subprocess):
         '''
         Cozy monitor can start an app
         '''
@@ -71,7 +81,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(start_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanStopAnApp(self, mock_subprocess):
+    def test_can_stop_an_app(self, mock_subprocess):
         '''
         Cozy monitor can stop an app
         '''
@@ -82,7 +92,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(stop_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanRestartAnApp(self, mock_subprocess):
+    def test_can_restart_an_app(self, mock_subprocess):
         '''
         Cozy monitor can restart an app
         '''
@@ -93,7 +103,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(restart_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanUpdateAnApp(self, mock_subprocess):
+    def test_can_update_an_app(self, mock_subprocess):
         '''
         Cozy monitor can update an app
         '''
@@ -104,7 +114,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(update_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanUninstallAnApp(self, mock_subprocess):
+    def test_can_uninstall_an_app(self, mock_subprocess):
         '''
         Cozy monitor can uninstall an app
         '''
@@ -115,7 +125,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(uninstall_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanInstallAnApp(self, mock_subprocess):
+    def test_can_install_an_app(self, mock_subprocess):
         '''
         Cozy monitor can install an app
         '''
@@ -126,7 +136,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(install_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanCompactAnApp(self, mock_subprocess):
+    def test_can_compact(self, mock_subprocess):
         '''
         Cozy monitor can compact an app
         '''
@@ -137,7 +147,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(compact_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanCompactAllViewsAnApp(self, mock_subprocess):
+    def test_can_compact_all_views(self, mock_subprocess):
         '''
         Cozy monitor can compact-all-views an app
         '''
@@ -148,7 +158,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(compact_all_views_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanCompactViewsAnApp(self, mock_subprocess):
+    def test_can_compact_a_views(self, mock_subprocess):
         '''
         Cozy monitor can compact-views an app
         '''
@@ -159,7 +169,7 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(compact_views_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
-    def testCanViewsListAnApp(self, mock_subprocess):
+    def test_can_views_list(self, mock_subprocess):
         '''
         Cozy monitor can views-list an app
         '''
