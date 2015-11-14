@@ -1,3 +1,6 @@
 nose
 nose-cov
 pylint
+mock
+sniffer
+coverage
