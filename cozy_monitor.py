@@ -91,7 +91,7 @@ def main():
     # print uninstall(['contacts', 'calendar'])
     # print install(['contacts', 'calendar'])
     # print compact()
-    print views_list()
+    # print views_list()
     # print compact_all_views()
 
 if __name__ == '__main__':

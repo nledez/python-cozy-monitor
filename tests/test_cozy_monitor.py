@@ -124,3 +124,36 @@ class CozyMonitor(unittest.TestCase):
         install_out = cozy_monitor.install('calendar')
         self.assertIsInstance(install_out, str)
         self.assertEqual(install_out, expected)
+
+    @mock.patch('cozy_monitor.subprocess')
+    def testCanCompactAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can compact an app
+        '''
+        expected = PopenMock('compact').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('compact')
+        compact_out = cozy_monitor.compact()
+        self.assertIsInstance(compact_out, str)
+        self.assertEqual(compact_out, expected)
+
+    @mock.patch('cozy_monitor.subprocess')
+    def testCanCompactAllViewsAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can compact-all-views an app
+        '''
+        expected = PopenMock('compact-all-views').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('compact-all-views')
+        compact_all_views_out = cozy_monitor.compact_all_views()
+        self.assertIsInstance(compact_all_views_out, str)
+        self.assertEqual(compact_all_views_out, expected)
+
+    @mock.patch('cozy_monitor.subprocess')
+    def testCanViewsListAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can views-list an app
+        '''
+        expected = PopenMock('views-list').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('views-list')
+        views_list_out = cozy_monitor.views_list()
+        self.assertIsInstance(views_list_out, str)
+        self.assertEqual(views_list_out, expected)
