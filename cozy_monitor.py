@@ -76,23 +76,3 @@ def status(app_name=None):
         return apps[app_name]
     else:
         return apps
-
-
-def main():
-    print status()
-    # print stop('contacts')
-    # print stop(['contacts', 'calendar'])
-    # print status('contacts')
-    # print start('contacts')
-    # print start(['contacts', 'calendar'])
-    # print status('contacts')
-    # print status('calendar')
-    # print uninstall('contacts')
-    # print uninstall(['contacts', 'calendar'])
-    # print install(['contacts', 'calendar'])
-    # print compact()
-    # print views_list()
-    # print compact_all_views()
-
-if __name__ == '__main__':
-    main()
