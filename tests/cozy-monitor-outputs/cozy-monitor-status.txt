@@ -1,0 +1,16 @@
+mta: [32mup[39m
+couch: [32mup[39m
+controller: [32mup[39m
+data-system: [32mup[39m
+home: [32mup[39m
+proxy: [32mup[39m
+index: [32mup[39m
+calendar: [90mstopped[39m
+databrowser: [32mup[39m
+kresus: [32mup[39m
+leave-google: [32mup[39m
+contacts: [32mup[39m
+files: [32mup[39m
+photos: [32mup[39m
+sync: [32mup[39m
+emails: [32mup[39m
