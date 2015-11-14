@@ -148,6 +148,17 @@ class CozyMonitor(unittest.TestCase):
         self.assertEqual(compact_all_views_out, expected)
 
     @mock.patch('cozy_monitor.subprocess')
+    def testCanCompactViewsAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can compact-views an app
+        '''
+        expected = PopenMock('compact-views').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('compact-views')
+        compact_views_out = cozy_monitor.compact_views('message')
+        self.assertIsInstance(compact_views_out, str)
+        self.assertEqual(compact_views_out, expected)
+
+    @mock.patch('cozy_monitor.subprocess')
     def testCanViewsListAnApp(self, mock_subprocess):
         '''
         Cozy monitor can views-list an app
