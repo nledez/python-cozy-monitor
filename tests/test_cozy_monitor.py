@@ -91,3 +91,36 @@ class CozyMonitor(unittest.TestCase):
         restart_out = cozy_monitor.restart('calendar')
         self.assertIsInstance(restart_out, str)
         self.assertEqual(restart_out, expected)
+
+    @mock.patch('cozy_monitor.subprocess')
+    def testCanUpdateAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can update an app
+        '''
+        expected = PopenMock('update').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('update')
+        update_out = cozy_monitor.update('calendar')
+        self.assertIsInstance(update_out, str)
+        self.assertEqual(update_out, expected)
+
+    @mock.patch('cozy_monitor.subprocess')
+    def testCanUninstallAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can uninstall an app
+        '''
+        expected = PopenMock('uninstall').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('uninstall')
+        uninstall_out = cozy_monitor.uninstall('calendar')
+        self.assertIsInstance(uninstall_out, str)
+        self.assertEqual(uninstall_out, expected)
+
+    @mock.patch('cozy_monitor.subprocess')
+    def testCanInstallAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can install an app
+        '''
+        expected = PopenMock('install').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('install')
+        install_out = cozy_monitor.install('calendar')
+        self.assertIsInstance(install_out, str)
+        self.assertEqual(install_out, expected)
