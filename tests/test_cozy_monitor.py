@@ -69,3 +69,25 @@ class CozyMonitor(unittest.TestCase):
         start_out = cozy_monitor.start('calendar')
         self.assertIsInstance(start_out, str)
         self.assertEqual(start_out, expected)
+
+    @mock.patch('cozy_monitor.subprocess')
+    def testCanStopAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can stop an app
+        '''
+        expected = PopenMock('stop').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('stop')
+        stop_out = cozy_monitor.stop('calendar')
+        self.assertIsInstance(stop_out, str)
+        self.assertEqual(stop_out, expected)
+
+    @mock.patch('cozy_monitor.subprocess')
+    def testCanRestartAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can restart an app
+        '''
+        expected = PopenMock('restart').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('restart')
+        restart_out = cozy_monitor.restart('calendar')
+        self.assertIsInstance(restart_out, str)
+        self.assertEqual(restart_out, expected)
