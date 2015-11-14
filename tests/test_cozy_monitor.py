@@ -58,3 +58,14 @@ class CozyMonitor(unittest.TestCase):
         app_stopped = cozy_monitor.status('calendar')
         self.assertIsInstance(app_stopped, str)
         self.assertEqual(app_stopped, 'stopped')
+
+    @mock.patch('cozy_monitor.subprocess')
+    def testCanStartAnApp(self, mock_subprocess):
+        '''
+        Cozy monitor can start an app
+        '''
+        expected = PopenMock('start').stdout.read()
+        mock_subprocess.Popen.return_value = PopenMock('start')
+        start_out = cozy_monitor.start('calendar')
+        self.assertIsInstance(start_out, str)
+        self.assertEqual(start_out, expected)
