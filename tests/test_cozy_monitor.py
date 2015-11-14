@@ -44,6 +44,17 @@ class CozyMonitor(unittest.TestCase):
             'kresus': 'up',
         }
         mock_subprocess.Popen.return_value = PopenMock('cozy-monitor-status.txt')
-        out = cozy_monitor.status()
-        self.assertIsInstance(out, dict)
-        self.assertEqual(out, expected)
+
+        full_out = cozy_monitor.status()
+        self.assertIsInstance(full_out, dict)
+        self.assertEqual(full_out, expected)
+
+        mock_subprocess.Popen.return_value = PopenMock('cozy-monitor-status.txt')
+        app_up = cozy_monitor.status('files')
+        self.assertIsInstance(app_up, str)
+        self.assertEqual(app_up, 'up')
+
+        mock_subprocess.Popen.return_value = PopenMock('cozy-monitor-status.txt')
+        app_stopped = cozy_monitor.status('calendar')
+        self.assertIsInstance(app_stopped, str)
+        self.assertEqual(app_stopped, 'stopped')
